@@ -1,0 +1,112 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: 0;
+}
+
+body {
+  background-color: green;
+}
+
+#PrayerTimesTable {
+  width: 50%;
+  margin: 0 auto;
+  height: 500px;
+  background-color: white;
+  padding: 30px 10px;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgb(0, 0, 0, 0.4);
+  position: relative;
+
+}
+
+#PrayerTimesTable::after {
+  content: "";
+  position: absolute;
+  top: -220px;
+  right: -100px;
+  background: url(pngtree-islamic-ramadan-kareem-3d-golden-mosque-png-image_6661585.png);
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+
+#PrayerTimesTable h1 {
+
+  margin: 5px 0 5px 30%;
+}
+
+#PrayerTimesTable #Date {
+  width: fit-content;
+  margin: auto;
+}
+
+
+#chose-city {
+  background-color: green;
+  height: 60px;
+  margin: 20px auto;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  box-shadow: 0 5px 10px rgb(0, 255, 0, 0.2);
+
+}
+
+#chose-city h1 {
+  display: inline-block;
+  margin: 8px 0 0 350px;
+
+  color: white;
+}
+
+.PrayerTimes {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 20px;
+  padding: 30px;
+  border: 3px solid green;
+
+}
+
+#times {
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+#times .header h2 {
+  margin-bottom: 10px;
+  color: green;
+}
+
+
+#city {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 70px;
+
+}
+
+#city select {
+  background-color: white;
+  padding: 10px 50px;
+  border: 2px solid green;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+}

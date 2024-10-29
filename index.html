@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="node_modules/axios/dist/axios.js"></script>
+  <title>PrayerTimes</title>
+</head>
+
+<body>
+
+  <div style="margin: 250px 0  60px 0  ;">
+    <div id="PrayerTimesTable">
+      <h1>Prayer Times in Jordan</h1>
+      <div id="chose-city">
+        <h1>Amman</h1>
+      </div>
+
+      <div id="Date">
+        <h4 id="date">27 /6/2024</h4>
+        <h4 id="day">sun</h4>
+
+      </div>
+
+      <div class="PrayerTimes">
+
+        <div id="times">
+          <div class="header">
+            <h2>Fajr</h2>
+
+          </div>
+          <div class="body">
+            <h3 id="time">3:53</h3>
+          </div>
+        </div>
+        <div id="times">
+          <div class="header">
+            <h2>Sun Rise</h2>
+
+          </div>
+          <div class="body">
+            <h3 id="time">3:53</h3>
+          </div>
+
+
+        </div>
+        <div id="times">
+          <div class="header">
+            <h2>Dhuhr</h2>
+
+          </div>
+          <div class="body">
+            <h3 id="time">3:53</h3>
+          </div>
+
+
+        </div>
+        <div id="times">
+          <div class="header">
+            <h2>Aser</h2>
+
+          </div>
+          <div class="body">
+            <h3 id="time">3:53</h3>
+          </div>
+
+
+        </div>
+        <div id="times">
+          <div class="header">
+            <h2>Maghrib</h2>
+
+          </div>
+          <div class="body">
+            <h3 id="time">3:53</h3>
+          </div>
+
+
+        </div>
+        <div id="times">
+          <div class="header">
+            <h2>Isha</h2>
+
+          </div>
+          <div class="body">
+            <h3 id="time">3:53</h3>
+          </div>
+
+
+        </div>
+
+
+
+      </div>
+
+      <div id="city">
+        <select name="cities" id="select">
+          <option value="Amman">Amman</option>
+          <option value="Irbid">Irbid</option>
+
+        </select>
+      </div>
+
+    </div>
+
+</body>
+
+<script>
+
+  var cities = ["Amman", "Irbid", "Aqaba"];
+
+  document.getElementById('select').innerHTML = "";
+
+  for (city of cities) {
+
+    let option = `<option>
+      ${city}</option>`
+
+    document.getElementById('select').innerHTML += option;
+  }
+
+  document.getElementById('select').addEventListener("change", function () {
+    let city = document.getElementById('select').value;
+
+
+    document.getElementById('chose-city').innerHTML = `<h1> ${city}</h1>`
+    getTiming(city);
+  })
+
+
+
+
+
+
+  function getTiming(city) {
+    axios.get(` http://api.aladhan.com/v1/timingsByCity?city=${city}&country=Jordan`)
+      .then(response => {
+        let time = response.data.data.timings;
+
+        document.getElementsByClassName('body')[0].innerHTML = `<h3>${time.Fajr} </h3>`;
+        document.getElementsByClassName('body')[1].innerHTML = `<h3>${time.Sunrise} </h3>`;
+        document.getElementsByClassName('body')[2].innerHTML = `<h3>${time.Dhuhr} </h3>`;
+        document.getElementsByClassName('body')[3].innerHTML = `<h3>${time.Asr} </h3>`;
+        document.getElementsByClassName('body')[4].innerHTML = `<h3>${time.Maghrib} </h3>`;
+        document.getElementsByClassName('body')[5].innerHTML = `<h3>${time.Isha} </h3>`;
+
+
+
+
+        document.getElementById('Date').innerHTML = `
+        <h4 id="date">${response.data.data.date.gregorian.date}</h4>
+        <h4 id="day">${response.data.data.date.gregorian.weekday.en}</h4>
+        `
+
+      })
+
+  }
+
+
+  function cityName(city) {
+    getTiming(city)
+  }
+  getTiming("Amman")
+
+
+
+
+
+</script>
+
+</html>
